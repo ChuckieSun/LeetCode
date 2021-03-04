@@ -7,6 +7,32 @@
     <title>1710. 卡车上的最大单元数</title>
 </head>
 <body>
-    
+    <script>
+
+/**
+ * @param {number[][]} boxTypes
+ * @param {number} truckSize
+ * @return {number}
+ */
+var maximumUnits = function(boxTypes, truckSize) {
+    let res = 0;
+    boxTypes.sort((a, b) => {
+        return b[1] - a[1];
+    });
+    for (let i in boxTypes) {
+        if (boxTypes[i][0] >= truckSize) {
+            res += truckSize * boxTypes[i][1];
+            return res;
+        } else if (truckSize > 0) {
+            res += boxTypes[i][0] * boxTypes[i][1];
+            truckSize -= boxTypes[i][0];
+        }
+    }
+    return res;
+};
+
+console.log(maximumUnits([[1,3],[5,5],[2,5],[4,2],[4,1],[3,1],[2,2],[1,3],[2,5],[3,2]], 35));
+
+    </script>
 </body>
 </html>
